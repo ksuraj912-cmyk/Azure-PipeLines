@@ -4,12 +4,14 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-  - script: 'echo "Building the project..."'
-    displayName: "Build Project"
-  - script: 'echo "Running tests..."'
-    displayName: "Run Tests"
-  - script: 'echo "Deploying the application..."'
-    displayName: "Deploy Application"
-  - script: 'echo "Running tests..."'
-    displayName: "Run Tests"
-  
+    - script: |
+        git --version
+        echo "checked git version"
+        docker --version
+        echo "checked docker version"
+        docker pull nginx:latest
+        docker images
+        echo "pulled nginx image and listed images"
+        
+      displayName: 'Tools checked and nginx image pulled'
+      
