@@ -4,14 +4,13 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+    
     - script: |
-        git --version
-        echo "checked git version"
-        docker --version
-        echo "checked docker version"
-        docker pull nginx:latest
-        docker images
-        echo "pulled nginx image and listed images"
-        
-      displayName: 'Tools checked and nginx image pulled'
+        sudo apt-get update
+        sudo apt-get install -y mono-complete
+      displayName: 'Install Mono'
+    - script: |
+        mcs dotnetcode.cs
+        mono dotnetcode.exe
+      displayName: 'Compile and run C# file'
       
